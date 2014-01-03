@@ -15,10 +15,10 @@ function run_validation(e) {
   var th = $("#defaultReal");
   console.log(th);
   var data_object = {
-    "fullname": $("#fullname").val(),
-    "email": $("#email").val(),
-    "subject": $("#subject").val(),
-    "message": $("#message").val()
+    "Full Name": $("#fullname").val(),
+    "Email": $("#email").val(),
+    "Subject": $("#subject").val(),
+    "Message": $("#message").val()
   }
   var invalid_elements = [];
 
@@ -70,7 +70,7 @@ $(function() {
 <form id="form1" method="post" align="center" action="contactus.php">
 <div id="error_messages"></div>
       <div class="form-row"><span class="label">Full Name</span><input type="text" id="fullname" name="fullname" align="center" /></div>
- <div class="form-row"><span class="label">E-Mail</span><input type="text" id="email" name="email" align="center" /></div>
+ <div class="form-row"><span class="label">Email</span><input type="text" id="email" name="email" align="center" /></div>
       <div class="form-row"><span class="label">Subject</span><input type="text" id="subject" name="subject" align="center" /></div>
       <div class="form-row"><span class="label">Message</span><textarea id="message" name="message" align="center"></textarea></div>
       <p><label>Please enter the letters displayed:</label>
