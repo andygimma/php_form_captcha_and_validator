@@ -1,4 +1,25 @@
+<!--
+Andy Gimma
+Copyright 2014
+
+Instructions:
+
+Set $my_email, #my_recipient.
+create captcha_success.html and captcha_failure pages, and include them in the same directory
+
+Description:
+This uses realperson.js from this link http://keith-wood.name/realPerson.html.
+
+On the server side, you have to catch the entered captca value $_POST['defaultReal'] and the hash associated with it on the front end
+$_POST['defaultRealHash']. Then you have to use rpHash($value) on 'defaultReal', and compare hashes.
+
+If the hashes are equal, you can send your email.
+-->
+
 <?php 
+$my_email = "";
+$my_recipient = "";
+
 function rpHash($value) { 
     $hash = 5381; 
     $value = strtoupper($value); 
@@ -10,11 +31,11 @@ function rpHash($value) {
 
 if (rpHash($_POST['defaultReal']) == $_POST['defaultRealHash']) { 
   $fullname = $_POST['fullname'];
-  $email = "stiehls@stiehlsbodymod.c	om";
+  $email = $my_email;
   $subject = $_POST['subject'];
   $message = $_POST['message'];
   $formcontent = "From: $fullname \n Message: $message";
-  $recipient = "zachary.a.straub@gmail.com";
+  $recipient = $my_recipient;
   $mailheader = "From: $email \r\n";
   if ('127.0.0.1' == $_SERVER["REMOTE_ADDR"]) {
     header("Location: captcha_success.html");

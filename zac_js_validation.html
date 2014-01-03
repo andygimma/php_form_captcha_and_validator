@@ -1,3 +1,22 @@
+<!--
+Andy Gimma
+Copyright 2014
+
+Instructions:
+
+Set $my_email, #my_recipient.
+create captcha_success.html and captcha_failure pages, and include them in the same directory
+
+Description:
+This uses realperson.js from this link http://keith-wood.name/realPerson.html.
+
+On the server side, you have to catch the entered captca value $_POST['defaultReal'] and the hash associated with it on the front end
+$_POST['defaultRealHash']. Then you have to use rpHash($value) on 'defaultReal', and compare hashes.
+
+If the hashes are equal, you can send your email.
+-->
+
+
 <html>
 <head>
 <link rel="stylesheet" href="realperson.css">
