@@ -65,11 +65,13 @@ function exists_validation(key, string, invalid_elements) {
 
 function add_errors(invalid_elements) {
   for (var i = 0; i < invalid_elements.length; i++) {
-   if (invalid_elements[i] == "email") {
+  $("#error_messages").append("<div class=error_messages>");
+   if (invalid_elements[i] == "Email") {
      $("#error_messages").append("Email must be valid<br>");
    } else {
      $("#error_messages").append(invalid_elements[i] + ' cannot be empty<br>');
    }
+  $("#error_messages").append("</div>");
   }  
 }
 </script>
