@@ -1,0 +1,82 @@
+<html>
+<head>
+<link rel="stylesheet" href="realperson.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script type="text/javascript" src="realperson.js"></script>
+<script>
+$(function() {
+  $( "form" ).submit(function(e) {
+    run_validation(e);
+  });
+})
+
+function run_validation(e) {
+  $("#error_messages").empty();
+  var th = $("#defaultReal");
+  console.log(th);
+  var data_object = {
+    "fullname": $("#fullname").val(),
+    "email": $("#email").val(),
+    "subject": $("#subject").val(),
+    "message": $("#message").val()
+  }
+  var invalid_elements = [];
+
+  for (var key in data_object) {
+    if (key == "email") {
+      email_validation(data_object[key], invalid_elements);
+    } else {
+      exists_validation(key, data_object[key], invalid_elements); 
+    }
+  }
+  if (invalid_elements.length > 0) {
+    add_errors(invalid_elements);
+    e.preventDefault();
+  } else {
+    console.log("sent");
+  }
+}
+  
+function email_validation(email, invalid_elements) {
+    var re = /\S+@\S+\.\S+/;
+    if (re.test(email) == false) {
+      invalid_elements.push("email"); 
+    }
+}
+
+function exists_validation(key, string, invalid_elements) {
+  if (typeof string == 'undefined' || string.length == 0) {
+    invalid_elements.push(key);
+  }
+}
+
+function add_errors(invalid_elements) {
+  for (var i = 0; i < invalid_elements.length; i++) {
+   if (invalid_elements[i] == "email") {
+     $("#error_messages").append("Email must be valid<br>");
+   } else {
+     $("#error_messages").append(invalid_elements[i] + ' cannot be empty<br>');
+   }
+  }  
+}
+</script>
+<script>
+$(function() {
+	$('#defaultReal').realperson();
+});
+</script>
+</head>
+<body>
+<form id="form1" method="post" align="center" action="contactus.php">
+<div id="error_messages"></div>
+      <div class="form-row"><span class="label">Full Name</span><input type="text" id="fullname" name="fullname" align="center" /></div>
+ <div class="form-row"><span class="label">E-Mail</span><input type="text" id="email" name="email" align="center" /></div>
+      <div class="form-row"><span class="label">Subject</span><input type="text" id="subject" name="subject" align="center" /></div>
+      <div class="form-row"><span class="label">Message</span><textarea id="message" name="message" align="center"></textarea></div>
+      <p><label>Please enter the letters displayed:</label>
+		<input type="text" id="defaultReal" name="defaultReal"></p>
+            <div class="form-row" align="center"><input class="submit" id="submit" type="submit" value="Submit"></div>
+</form>
+
+</body>
+</html>
