@@ -17,12 +17,17 @@ if (rpHash($_POST['defaultReal']) == $_POST['defaultRealHash']) {
   $recipient = "zachary.a.straub@gmail.com";
   $mailheader = "From: $email \r\n";
   if ('127.0.0.1' == $_SERVER["REMOTE_ADDR"]) {
-    echo "Success!";
+    header("Location: captcha_success.html");
+    die();
   } else {
     mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
-    echo "<center><br><br><br>Thank You! Click <a href=\"index.html\">here to return</a> to the Home Page"; 
+//  echo "<center><br><br><br>Thank You! Click <a href=\"index.html\">here to return</a> to the Home Page"; 
+    header("Location: captcha_success.html");
+    die();
   }
 } else {
-  echo "<center><br><br><br>Validation entered incorrectly"; 
+//  echo "<center><br><br><br>Validation entered incorrectly"; 
+    header("Location: captcha_failure.html");
+    die();
 }
 ?>
